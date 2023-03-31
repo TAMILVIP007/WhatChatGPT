@@ -1,0 +1,30 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+
+# Executable
+*.out
+
+# Packages
+/vendor/
+/node_modules/
+
+# Compiled Object Files
+*.o
+*.obj
+
+# Image files
+*.jpg
+*.png
+*.jpeg
+
+# Test binary, Subdirectories
+**/testbin/
+**/tests/
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+*.db

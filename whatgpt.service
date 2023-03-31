@@ -1,0 +1,13 @@
+[Unit]
+Description=WhatChatGPT
+After=network.target
+
+[Service]
+Type=simple
+User=your_username
+WorkingDirectory=/path/to/your/app
+ExecStart=/path/to/your/app/your_app_name
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
