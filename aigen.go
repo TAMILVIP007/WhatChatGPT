@@ -129,10 +129,12 @@ func GetAiTextResponse(msg string) (string, error) {
 	}
 
 	// Unmarshal the chat response from bytes
-	var chatResponse ChatResponse
-	err = json.Unmarshal(responseBody, &chatResponse)
-	if err != nil {
+	var chatResponse ChatResponse	
+	if err = json.Unmarshal(responseBody, &chatResponse); err != nil {
 		return "", fmt.Errorf("error unmarshalling response body: %v", err.Error())
+	}
+	if len(chatResponse.Choices) == 0 {
+		return "", fmt.Errorf("error getting response from OpenAI")
 	}
 	content := chatResponse.Choices[0].Message.Content
 	return content, nil
