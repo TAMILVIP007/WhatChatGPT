@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"log"
 	"io"
 	"net/http"
 )
@@ -32,14 +33,14 @@ func GenAIimg(imageBytes []byte) ([]byte, error) {
 	// Marshal payload map into json bytes
 	payloadBytes, err := json.Marshal(payload)
 	if err != nil {
-		panic(err)
+		log.Printf("Couldn't marshal json data: %v", err.Error())
 	}
 	// Initialize http client to send requests
 	client := &http.Client{}
 	// Create a http POST request and set headers
 	req, err := http.NewRequest("POST", fmt.Sprintf("https://openapi.mtlab.meitu.com/v1/stable_diffusion_anime?api_key=%s&api_secret=%s", env.AiImgKey, env.AiImgSecret), nil)
 	if err != nil {
-		panic(err)
+		log.Printf("Can't Send http req: %v", err.Error())
 	}
 	req.Header.Set("Content-Type", "application/json")
 	// Set request body to the payload we created earlier
@@ -134,6 +135,7 @@ func GetAiTextResponse(msg string) (string, error) {
 		return "", fmt.Errorf("error unmarshalling response body: %v", err.Error())
 	}
 	if len(chatResponse.Choices) == 0 {
+		log.Printf("Resp From OPenAi: %v", err.Error())
 		return "", fmt.Errorf("error getting response from OpenAI")
 	}
 	content := chatResponse.Choices[0].Message.Content
