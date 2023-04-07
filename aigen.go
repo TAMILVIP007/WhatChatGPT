@@ -135,7 +135,7 @@ func GetAiTextResponse(msg string) (string, error) {
 		return "", fmt.Errorf("error unmarshalling response body: %v", err.Error())
 	}
 	if len(chatResponse.Choices) == 0 {
-		log.Printf("Resp From OPenAi: %v", err.Error())
+		log.Printf("Resp From OPenAi: %v", responseBody)
 		return "", fmt.Errorf("error getting response from OpenAI")
 	}
 	content := chatResponse.Choices[0].Message.Content
