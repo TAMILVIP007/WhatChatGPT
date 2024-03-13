@@ -7,7 +7,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.16
 	github.com/mdp/qrterminal/v3 v3.0.0
 	go.mau.fi/whatsmeow v0.0.0-20230222131820-858ec581c8c5
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
